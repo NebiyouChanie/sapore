@@ -52,7 +52,7 @@ export default function SignupForm() {
   
     } catch (error) { 
       console.log("~ onSubmit ~ error:", error)
-      toast.error('Something went wrong! Please try again later.');
+      toast.error(`Something went wrong! Please try again later.${error}`);
     }
   };
 
