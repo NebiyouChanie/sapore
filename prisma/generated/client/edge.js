@@ -218,6 +218,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-1.1.x"
       }
     ],
     "previewFeatures": [],
@@ -243,8 +247,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"./generated/client\"\n}\n\nmodel admin {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Category {\n  id        String     @id @default(uuid())\n  name      String     @unique\n  menuItems MenuItem[]\n}\n\nmodel MenuItem {\n  id          String   @id @default(uuid())\n  name        String\n  description String\n  price       Float\n  isMainMenu  Boolean  @default(false)\n  imageUrl    String\n  isSpecial   Boolean  @default(false)\n  itemType    ItemType\n  categoryId  String\n  category    Category @relation(fields: [categoryId], references: [id])\n}\n\nenum ItemType {\n  starter\n  maindish\n  dessert\n}\n\nmodel MenuSettings {\n  id              String   @id @default(uuid())\n  showPrice       Boolean  @default(true)\n  showDescription Boolean  @default(true)\n  createdAt       DateTime @default(now())\n  updatedAt       DateTime @updatedAt\n}\n\nmodel Reservation {\n  id             String            @id @default(uuid())\n  name           String\n  email          String\n  phoneNumber    String\n  numberOfGuests Int\n  date           DateTime\n  time           String\n  message        String?\n  status         ReservationStatus @default(Pending)\n  createdAt      DateTime          @default(now())\n  updatedAt      DateTime          @updatedAt\n}\n\nenum ReservationStatus {\n  Pending\n  Confirmed\n  Cancelled\n}\n",
-  "inlineSchemaHash": "6e9324353b6486c4c14e4287aa65aa503887edece4e93287c059ed5c004fc0a8",
+  "inlineSchema": "datasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"./generated/client\"\n  binaryTargets = [\"native\", \"debian-openssl-1.1.x\"]\n}\n\nmodel admin {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Category {\n  id        String     @id @default(uuid())\n  name      String     @unique\n  menuItems MenuItem[]\n}\n\nmodel MenuItem {\n  id          String   @id @default(uuid())\n  name        String\n  description String\n  price       Float\n  isMainMenu  Boolean  @default(false)\n  imageUrl    String\n  isSpecial   Boolean  @default(false)\n  itemType    ItemType\n  categoryId  String\n  category    Category @relation(fields: [categoryId], references: [id])\n}\n\nenum ItemType {\n  starter\n  maindish\n  dessert\n}\n\nmodel MenuSettings {\n  id              String   @id @default(uuid())\n  showPrice       Boolean  @default(true)\n  showDescription Boolean  @default(true)\n  createdAt       DateTime @default(now())\n  updatedAt       DateTime @updatedAt\n}\n\nmodel Reservation {\n  id             String            @id @default(uuid())\n  name           String\n  email          String\n  phoneNumber    String\n  numberOfGuests Int\n  date           DateTime\n  time           String\n  message        String?\n  status         ReservationStatus @default(Pending)\n  createdAt      DateTime          @default(now())\n  updatedAt      DateTime          @updatedAt\n}\n\nenum ReservationStatus {\n  Pending\n  Confirmed\n  Cancelled\n}\n",
+  "inlineSchemaHash": "854578c8a69f78e049ae36fb5c9e2ccb8d91b859e3a7a6d76bc523a55000e844",
   "copyEngine": true
 }
 config.dirname = '/'
