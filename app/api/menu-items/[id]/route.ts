@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { z } from "zod"
-import { ItemType } from "@prisma/client"
+import { ItemType } from "@/prisma/generated/client"
 
 // Define validation schema matching your form
 const menuItemSchema = z.object({

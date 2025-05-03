@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { protectApiRoute } from '@/lib/api-auth';
 import { sendEmail } from '@/lib/sendEmail';  
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@/prisma/generated/client';
 
 // Define validation schema
 const reservationSchema = z.object({

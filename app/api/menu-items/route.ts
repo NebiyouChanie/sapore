@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse, NextRequest } from "next/server";
-import { ItemType } from "@prisma/client";
+import { ItemType } from "@/prisma/generated/client";
 import { protectApiRoute } from "@/lib/api-auth";
 import { z } from "zod";
 
