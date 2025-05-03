@@ -1,0 +1,70 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+model admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  menuItems MenuItem[]
+}
+
+model MenuItem {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  isMainMenu  Boolean  @default(false)
+  imageUrl    String
+  isSpecial   Boolean  @default(false)
+  itemType    ItemType
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+}
+
+enum ItemType {
+  starter
+  maindish
+  dessert
+}
+
+model MenuSettings {
+  id              String   @id @default(uuid())
+  showPrice       Boolean  @default(true)
+  showDescription Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Reservation {
+  id             String            @id @default(uuid())
+  name           String
+  email          String
+  phoneNumber    String
+  numberOfGuests Int
+  date           DateTime
+  time           String
+  message        String?
+  status         ReservationStatus @default(Pending)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+enum ReservationStatus {
+  Pending
+  Confirmed
+  Cancelled
+}
