@@ -33,8 +33,7 @@ jobs:
       - name: 🔨 Install dependencies
         run: |
           npm install --legacy-peer-deps
-          npx prisma generate
-
+  
       - name: 🔨 Build Project
         run: npm run build
 
